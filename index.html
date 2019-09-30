@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Suckow Rotation</title>
+  <meta name="description" content="Suckow Rotation">
+  <meta name="author" content="Nathan Merrill">
+</head>
+<body>
+<script>
+const parties = ["Dad", "Mom", "Mike", "Baxters", "Ansells", "Merrills", "Kevin", "Flinns", "Erik", "Emmy", "Andersons"];
+const histories = {
+    "Dad" : ["Kevin", "Merrills", "Baxters"],
+    "Mom" : ["Dad", "Ansells", "Kevin"],
+    "Mike" : ["Mom", "Erik", "Flinns"],
+    "Baxters" : ["Merrills", "Danny","Ansells"],
+    "Ansells" : ["Danny", "Flinns","Mom"],
+    "Merrills" : ["Mike", "Baxters","Dad"],
+    "Kevin" : ["Emmy", "Mom","Andersons"],
+    "Flinns" : ["Ansells", "Dad","Mike"],
+    "Erik" : ["Emmy"],
+    "Emmy" : ["Baxters", "Kevin","Merrills"],
+    "Danny" : ["Flinns", "Mike"],
+    "Andersons" : ["Emmy"],
+};
+function random(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+function selectTarget(partyIndex, remaining) {
+    if (partyIndex === parties.length) {
+        return [];
+    }
+    
+    const party = parties[partyIndex];
+    let available = remaining.filter(x => histories[party].indexOf(x) === -1 && party !== x);
+    while (available.length > 0) {
+        const selected = random(available);
+        const newRemaining = remaining.filter(x => x !== selected);    
+        const partyList = selectTarget(partyIndex+1, newRemaining);
+        if (partyList === false) {
+            available = available.filter(x => x !== selected);
+        } else {
+            partyList.push(selected);
+            return partyList;
+        }
+    }
+    return false;
+}
+function makePairs(){
+    const partyList = selectTarget(0, parties).reverse();
+    const pairs = {};
+    for (let i = 0; i < parties.length; i++) {
+        pairs[parties[i]] = partyList[i];
+    }
+    return pairs;
+}
+function printPairs(pairs){
+    const container = document.createElement("div");
+    const list = document.createElement("ul");
+    parties.forEach(party => {
+        const pair = pairs[party];
+        const li = document.createElement("li");
+        li.textContent = party + " => " + pair;
+        list.appendChild(li)
+    });
+    container.appendChild(list);
+    document.body.appendChild(container);
+}
+printPairs(makePairs());
+</script>
+</body>
+</html>
