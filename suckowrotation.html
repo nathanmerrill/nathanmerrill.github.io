@@ -10,20 +10,20 @@
 <body>
 <script>
 
-const parties = ["Dad", "Mom", "Mike", "Baxters", "Ansells", "Merrills", "Kevin", "Flinns", "Erik", "Emmy", "Andersons"];
+const parties = ["Dad", "Mom", "Mike", "Kristi", "Kelly", "Allie", "Kevin", "Jessie", "Erik", "Emmy", "Liz"];
 const histories = {
-    "Dad" : ["Mom", "Kevin", "Merrills", "Baxters"],
-    "Mom" : ["Dad", "Ansells", "Kevin"],
-    "Mike" : ["Mom", "Erik", "Flinns", "Andersons"],
-    "Baxters" : ["Merrills", "Danny","Ansells"],
-    "Ansells" : ["Danny", "Flinns","Mom"],
-    "Merrills" : ["Mike", "Baxters","Dad"],
-    "Kevin" : ["Emmy", "Mom","Andersons"],
-    "Flinns" : ["Ansells", "Dad","Mike"],
-    "Erik" : ["Emmy"],
-    "Emmy" : ["Baxters", "Kevin","Merrills"],
-    "Danny" : ["Flinns", "Mike"],
-    "Andersons" : ["Emmy"],
+    "Dad" : ["Mom", "Kevin", "Allie", "Kristi", "Emmy"],
+    "Mom" : ["Dad", "Kelly", "Kevin", "Jessie"],
+    "Mike" : ["Mom", "Erik", "Jessie", "Liz", "Dad"],
+    "Kristi" : ["Allie", "Danny","Kelly", "Kevin"],
+    "Kelly" : ["Danny", "Jessie","Mom", "Liz"],
+    "Allie" : ["Mike", "Kristi","Dad", "Erik"],
+    "Kevin" : ["Emmy", "Mom", "Liz", "Allie"],
+    "Jessie" : ["Kelly", "Dad", "Mike", "Kristi"],
+    "Erik" : ["Emmy", "Mom"],
+    "Emmy" : ["Kristi", "Kevin", "Allie", "Kelly"],
+    "Danny" : ["Jessie", "Mike"],
+    "Liz" : ["Emmy", "Mike"],
 };
 function random(array) {
     return array[Math.floor(Math.random() * array.length)];
