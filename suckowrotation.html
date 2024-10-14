@@ -43,6 +43,7 @@ function selectTarget(partyIndex, remaining) {
             available = available.filter(x => x !== selected);
         } else {
             partyList.push(selected);
+            console.log(partyList);
             return partyList;
         }
     }
